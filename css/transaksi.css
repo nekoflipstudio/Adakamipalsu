@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: #1e8449;
+    padding: 15px 0;
+}
+
+.navbar-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a.active {
+    text-decoration: underline;
+}
+
+.login-btn {
+    background-color: white;
+    color: #1e8449;
+    padding: 6px 14px;
+    border-radius: 5px;
+}
+
+/* MAIN */
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+    color: #1e8449;
+}
+
+/* FORM */
+.form-transaksi label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.form-transaksi input,
+.form-transaksi select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.form-transaksi button {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    background-color: #1e8449;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-transaksi button:hover {
+    background-color: #145a32;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
