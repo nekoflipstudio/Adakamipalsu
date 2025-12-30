@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaksi - Aplikasi Simpan Pinjam</title>
+    <link rel="stylesheet" href="css/transaksi.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="navbar-inner">
+        <div class="logo">Aplikasi Simpan Pinjam</div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Beranda</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Transaksi ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="transaksi.html">Simpanan & Pinjaman</a></li>
+                        <li><a href="laporan.html">Laporan</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="profile.html">Profil</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <h1>Transaksi Simpan Pinjam</h1>
+
+    <form class="form-transaksi">
+        <label>Nama Anggota</label>
+        <input type="text" id="nama">
+
+        <label>Jenis Transaksi</label>
+        <select id="jenis">
+            <option value="">-- Pilih --</option>
+            <option>Simpanan</option>
+            <option>Pinjaman</option>
+        </select>
+
+        <label>Jumlah</label>
+        <input type="number" id="jumlah">
+
+        <button type="submit">Simpan Transaksi</button>
+    </form>
+</main>
+
+<script>
+const form = document.querySelector(".form-transaksi");
+
+form.addEventListener("submit", function(event) {
+    const nama   = document.getElementById("nama");
+    const jenis  = document.getElementById("jenis");
+    const jumlah = document.getElementById("jumlah");
+
+    document.querySelectorAll(".error-msg").forEach(e => e.remove());
+    let valid = true;
+
+    function error(el, msg) {
+        const p = document.createElement("p");
+        p.textContent = msg;
+        p.style.color = "red";
+        p.classList.add("error-msg");
+        el.insertAdjacentElement("afterend", p);
+    }
+
+    if (nama.value.trim() === "") {
+        valid = false;
+        error(nama, "Nama anggota harus diisi!");
+    }
+    if (jenis.value === "") {
+        valid = false;
+        error(jenis, "Jenis transaksi harus dipilih!");
+    }
+    if (jumlah.value.trim() === "") {
+        valid = false;
+        error(jumlah, "Jumlah harus diisi!");
+    }
+
+    if (!valid) event.preventDefault();
+});
+</script>
+
+</body>
+</html>
