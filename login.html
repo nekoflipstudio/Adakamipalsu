@@ -13,7 +13,7 @@
         <h2>Login</h2>
         <p>Aplikasi Simpan Pinjam</p>
 
-        <form>
+        <form class="form-login">
             <input type="text" placeholder="Username">
             <input type="password" placeholder="Password">
             <button type="submit">Login</button>
@@ -27,6 +27,43 @@
         <small>© 2025 Simpan Pinjam</small>
     </div>
 </div>
+<script>
+    const form = document.querySelector(".form-login");
 
+form.addEventListener("submit", function(event) {
+    
+    const username = form.querySelector('input[type="text"]');
+    const password = form.querySelector('input[type="password"]');
+
+    
+    let existingErrors = form.querySelectorAll(".error-msg");
+    existingErrors.forEach(el => el.remove());
+
+    let valid = true;
+
+    
+    if (username.value.trim() === "") {
+        valid = false;
+        const error = document.createElement("p");
+        error.textContent = "Username harus diisi!";
+        error.style.color = "red";
+        error.classList.add("error-msg");
+        username.insertAdjacentElement("afterend", error);
+    }
+
+    if (password.value.trim() === "") {
+        valid = false;
+        const error = document.createElement("p");
+        error.textContent = "Password harus diisi!";
+        error.style.color = "red";
+        error.classList.add("error-msg");
+        password.insertAdjacentElement("afterend", error);
+    }
+    if (!valid) {
+        event.preventDefault();
+
+    }
+});
+</script>
 </body>
 </html>
