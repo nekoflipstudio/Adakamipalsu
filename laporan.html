@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Simpan Pinjam</title>
+
+    <link rel="stylesheet" href="css/laporan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="top-left">
+            <span class="logo">Admin</span>
+            <span class="divider">|</span>
+            <span class="subtitle">Simpan Pinjam Center</span>
+        </div>
+
+        <div class="top-right">
+            <div class="notif-wrapper">
+                <i class="fa-solid fa-bell notif-icon"></i>
+                <div class="notif-dropdown">
+                    <div class="notif-title">Notifikasi</div>
+                    <ul class="notif-list">
+                        <li class="notif-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><b>Budi Santoso</b> menambah pinjaman Rp 5.000.000</span>
+                        </li>
+                        <li class="notif-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>3 pinjaman jatuh tempo minggu ini</span>
+                        </li>
+                        <li class="notif-item">
+                            <i class="fa-solid fa-shield"></i>
+                            <span>Tidak ada laporan bermasalah</span>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile-area">
+                <img src="Images/adakami.png" class="profile-logo">
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+
+        <aside class="sidebar">
+            <ul>
+                <a href="index.html">
+                    <li><i class="fa-solid fa-house"></i> Home</li>
+                </a>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <a href="simpanan.html">
+                    <li><i class="fa-solid fa-building-columns"></i> Simpanan</li>
+                </a>
+
+                <a href="pinjaman.html">
+                    <li><i class="fa-solid fa-money-bill-wave"></i> Pinjaman</li>
+                </a>
+
+                <li class="active"><i class="fa-solid fa-chart-column"></i> Laporan</li>
+
+            </ul>
+
+            <hr>
+
+            <ul>
+                <a href="chat.html">
+                    <li><i class="fa-solid fa-comments"></i> Chat</li>
+                </a>
+                <a href="profile.html">
+                    <li><i class="fa-solid fa-gear"></i> Profile</li>
+                </a>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <li><i class="fa-solid fa-bullhorn"></i> Marketing</li>
+                <li><i class="fa-solid fa-chart-line"></i> Analytics</li>
+                <li><i class="fa-solid fa-headset"></i> Help Center</li>
+            </ul>
+
+            <hr>
+            <ul>
+                <li onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </li>
+            </ul>
+        </aside>
+
+
+        <main class="content">
+
+            <!-- SUMMARY -->
+            <div class="card">
+                <h2>Ringkasan Laporan</h2>
+
+                <div class="form-grid">
+                    <div>
+                        <b>Total Simpanan</b>
+                        <p id="totalSimpanan">Rp 0</p>
+                    </div>
+                    <div>
+                        <b>Total Pinjaman</b>
+                        <p id="totalPinjaman">Rp 0</p>
+                    </div>
+                    <div>
+                        <b>Saldo Bersih</b>
+                        <p id="saldoBersih">Rp 0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABLE -->
+            <div class="card">
+                <h2>Detail Laporan</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Tipe</th>
+                            <th>Jumlah</th>
+                            <th>Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="laporanTable"></tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        if (localStorage.getItem("isLogin") !== "true") {
+            window.location.href = "login.html";
+        }
+        function logout() {
+            localStorage.removeItem("isLogin");
+            localStorage.removeItem("username");
+            window.location.href = "login.html";
+        }
+        const laporanData = [
+            { nama: "Budi Santoso", tipe: "Simpanan", jumlah: 500000, tanggal: "2025-01-05" },
+            { nama: "Siti Aminah", tipe: "Pinjaman", jumlah: 3000000, tanggal: "2025-01-10" },
+            { nama: "Andi Pratama", tipe: "Simpanan", jumlah: 200000, tanggal: "2025-01-12" },
+            { nama: "Rina Lestari", tipe: "Pinjaman", jumlah: 1500000, tanggal: "2025-01-15" }
+        ];
+
+        const table = document.getElementById("laporanTable");
+
+        function renderTable() {
+            table.innerHTML = "";
+            laporanData.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+            <td>${item.nama}</td>
+            <td>${item.tipe}</td>
+            <td>Rp ${item.jumlah.toLocaleString("id-ID")}</td>
+            <td>${item.tanggal}</td>
+        `;
+                table.appendChild(row);
+            });
+        }
+
+        function renderSummary() {
+            let totalSimpanan = 0;
+            let totalPinjaman = 0;
+
+            laporanData.forEach(item => {
+                if (item.tipe === "Simpanan") totalSimpanan += item.jumlah;
+                if (item.tipe === "Pinjaman") totalPinjaman += item.jumlah;
+            });
+
+            document.getElementById("totalSimpanan").textContent =
+                "Rp " + totalSimpanan.toLocaleString("id-ID");
+
+            document.getElementById("totalPinjaman").textContent =
+                "Rp " + totalPinjaman.toLocaleString("id-ID");
+
+            document.getElementById("saldoBersih").textContent =
+                "Rp " + (totalSimpanan - totalPinjaman).toLocaleString("id-ID");
+        }
+
+        renderTable();
+        renderSummary();
+    </script>
+
+</body>
+
+</html>

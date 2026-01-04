@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Simpan Pinjam</title>
+
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="top-left">
+            <span class="logo">Admin</span>
+            <span class="divider">|</span>
+            <span class="subtitle">Simpan Pinjam Center</span>
+        </div>
+
+        <div class="top-right">
+            <div class="notif-wrapper">
+                <i class="fa-solid fa-bell notif-icon"></i>
+                <div class="notif-dropdown">
+                    <div class="notif-title">Notifikasi</div>
+                    <ul class="notif-list">
+                        <li class="notif-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><b>Budi Santoso</b> menambah pinjaman Rp 5.000.000</span>
+                        </li>
+                        <li class="notif-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>3 pinjaman jatuh tempo minggu ini</span>
+                        </li>
+                        <li class="notif-item">
+                            <i class="fa-solid fa-shield"></i>
+                            <span>Tidak ada laporan bermasalah</span>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile-area">
+                <img src="Images/adakami.png" class="profile-logo">
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+
+        <aside class="sidebar">
+            <ul>
+                <a href="index.html">
+                    <li><i class="fa-solid fa-house"></i> Home</li>
+                </a>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <a href="simpanan.html">
+                    <li><i class="fa-solid fa-building-columns"></i> Simpanan</li>
+                </a>
+
+                <a href="pinjaman.html">
+                    <li><i class="fa-solid fa-money-bill-wave"></i> Pinjaman</li>
+                </a>
+
+                <a href="laporan.html">
+                    <li><i class="fa-solid fa-chart-column"></i> Laporan</li>
+                </a>
+
+            </ul>
+
+            <hr>
+
+            <ul>
+                <li class="active"><i class="fa-solid fa-comments"></i> Chat</li>
+                <a href="profile.html">
+                    <li><i class="fa-solid fa-gear"></i> Profile</li>
+                </a>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <li><i class="fa-solid fa-bullhorn"></i> Marketing</li>
+                <li><i class="fa-solid fa-chart-line"></i> Analytics</li>
+                <li><i class="fa-solid fa-headset"></i> Help Center</li>
+            </ul>
+
+            <hr>
+            <ul>
+                <li onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </li>
+            </ul>
+        </aside>
+
+        <aside class="chat-users">
+            <h3>Chat</h3>
+
+            <div class="user" onclick="selectUser('Budi Santoso')">
+                <div class="avatar">B</div>
+                <span>Budi Santoso</span>
+            </div>
+
+            <div class="user" onclick="selectUser('Siti Aminah')">
+                <div class="avatar">S</div>
+                <span>Siti Aminah</span>
+            </div>
+
+            <div class="user" onclick="selectUser('Andi Pratama')">
+                <div class="avatar">A</div>
+                <span>Andi Pratama</span>
+            </div>
+        </aside>
+
+        <main class="chat-area disabled" id="chatArea">
+
+            <div class="chat-header">
+                <b id="chatName">Pilih user untuk mulai chat</b>
+            </div>
+
+            <div class="chat-messages" id="messages"></div>
+
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Ketik pesan..." disabled>
+                <button onclick="sendMessage()" disabled>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+        if (localStorage.getItem("isLogin") !== "true") {
+            window.location.href = "login.html";
+        }
+        function logout() {
+            localStorage.removeItem("isLogin");
+            localStorage.removeItem("username");
+            window.location.href = "login.html";
+        }
+        let currentUser = null;
+
+        function selectUser(name) {
+            currentUser = name;
+
+            document.getElementById("chatArea").classList.remove("disabled");
+            document.getElementById("chatName").textContent = name;
+            document.getElementById("chatInput").disabled = false;
+            document.querySelector(".chat-input button").disabled = false;
+
+            document.getElementById("messages").innerHTML = `
+        <div class="msg user">Halo admin</div>
+        <div class="msg admin">Halo ${name}, ada yang bisa dibantu?</div>
+    `;
+
+            document.querySelectorAll(".user").forEach(u => u.classList.remove("active"));
+            event.currentTarget.classList.add("active");
+        }
+
+        function sendMessage() {
+            const input = document.getElementById("chatInput");
+            const text = input.value.trim();
+            if (!text) return;
+
+            const msg = document.createElement("div");
+            msg.className = "msg admin";
+            msg.textContent = text;
+
+            const box = document.getElementById("messages");
+            box.appendChild(msg);
+
+            input.value = "";
+            box.scrollTop = box.scrollHeight;
+        }
+    </script>
+
+</body>
+
+</html>

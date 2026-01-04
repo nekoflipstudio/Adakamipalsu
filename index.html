@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Simpan Pinjam</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="top-left">
+            <span class="logo">Admin</span>
+            <span class="divider">|</span>
+            <span class="subtitle">Simpan Pinjam Center</span>
+        </div>
+        <div class="top-right">
+            <div class="notif-wrapper">
+                <i class="fa-solid fa-bell notif-icon"></i>
+
+                <div class="notif-dropdown">
+                    <div class="notif-title">Notifikasi</div>
+
+                    <ul class="notif-list">
+                        <li class="notif-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><b>Budi Santoso</b> menambah simpanan pokok Rp 500.000</span>
+                        </li>
+                        <li class="notif-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>5 simpanan jatuh tempo minggu ini</span>
+                        </li>
+                        <li class="notif-item">
+                            <i class="fa-solid fa-shield"></i>
+                            <span>Tidak ada laporan bermasalah</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile-area">
+                <img src="Images/adakami.png" alt="Profil Logo" class="profile-logo">
+                <span class="profile-name">Admin</span>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="wrapper">
+        <aside class="sidebar">
+            <ul>
+                <li class="active"><i class="fa-solid fa-house"></i> Home</li>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <a href="simpanan.html">
+                    <li><i class="fa-solid fa-building-columns"></i> Simpanan</li>
+                </a>
+
+                <a href="pinjaman.html">
+                    <li><i class="fa-solid fa-money-bill-wave"></i> Pinjaman</li>
+                </a>
+
+                <a href="laporan.html">
+                    <li><i class="fa-solid fa-chart-column"></i> Laporan</li>
+                </a>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <a href="chat.html">
+                    <li><i class="fa-solid fa-comments"></i> Chat</li>
+                </a>
+                <a href="profile.html">
+                    <li><i class="fa-solid fa-gear"></i> Profile</li>
+                </a>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <li><i class="fa-solid fa-bullhorn"></i> Marketing</li>
+                <li><i class="fa-solid fa-chart-line"></i> Analytics</li>
+                <li><i class="fa-solid fa-headset"></i> Help Center</li>
+            </ul>
+
+            <hr>
+            <ul>
+                <li onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </li>
+            </ul>
+        </aside>
+
+        <main class="main">
+            <section class="welcome">
+                <div class="welcome-top">
+                    <img src="Images/adakami.png" alt="Logo">
+                    <h2>Welcome to Adakami Admin Center</h2>
+                </div>
+
+                <div class="welcome-bottom">
+                    <h3>Penting Hari Ini</h3>
+                    <h4>Aktivitas yang harus kamu pantau untuk jaga kepuasan konsumen</h4>
+                </div>
+            </section>
+
+
+
+            <section class="status">
+                <div class="status-card">
+                    <small>Total Simpanan</small>
+                    <h3>30</h3>
+                    <span class="danger">+5 hari ini</span>
+                </div>
+                <div class="status-card">
+                    <small>Total Pinjaman</small>
+                    <h3>12</h3>
+                    <span class="success">Aman</span>
+                </div>
+                <div class="status-card">
+                    <small>Menunggak</small>
+                    <h3>3</h3>
+                    <span class="danger">Perlu ditindak</span>
+                </div>
+                <div class="status-card">
+                    <small>Saldo Koperasi</small>
+                    <h3>Rp 120jt</h3>
+                    <span class="danger">Periksa</span>
+                </div>
+            </section>
+
+            <section>
+                <div class="guide-container collapsed">
+                    <div class="guide-header" onclick="toggleGuide()">
+                        <div class="guide-title">
+                            <h2>PANDUAN PENGGUNAAN APLIKASI WEB</h2>
+                            <h3>Silahkan dibaca dan diteliti</h3>
+                        </div>
+                        <span id="toggle-icon">▼</span>
+                    </div>
+
+                    <div id="guide-content">
+                        <p>Selamat datang di <b>Simpan Pinjam Center</b>! Aplikasi ini dirancang untuk membantu
+                            pengelolaan koperasi secara mudah, cepat, dan efisien.</p>
+
+                        <h3>🏠 Beranda</h3>
+                        <ul>
+                            <li>Menampilkan ringkasan aktivitas penting setiap hari</li>
+                            <li>Cek total simpanan, pinjaman, anggota menunggak, dan saldo koperasi</li>
+                            <li>Gunakan bagian Review Kinerja untuk memantau pertumbuhan koperasi</li>
+                        </ul>
+
+                        <h3>📦 Transaksi Simpan</h3>
+                        <ul>
+                            <li>Tambahkan simpanan baru</li>
+                            <li>Lihat riwayat simpanan anggota</li>
+                            <li>Edit atau hapus data jika perlu</li>
+                        </ul>
+
+                        <h3>💸 Transaksi Pinjam</h3>
+                        <ul>
+                            <li>Catat pinjaman baru dan pantau statusnya</li>
+                            <li>Lihat daftar anggota dengan cicilan berjalan</li>
+                            <li>Tandai pinjaman yang sudah lunas</li>
+                        </ul>
+
+                        <div class="tip">💡 Tip: Klik “Lihat Detail” di bagian Reminder & Alert untuk menindak cepat
+                            anggota menunggak.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="performance">
+                <div class="perf-left">
+                    <h3>Review Kinerja</h3>
+                    <div class="metrics">
+                        <div>
+                            <small>Total Transaksi</small>
+                            <b>126</b>
+                            <span class="success">+3%</span>
+                        </div>
+                        <div>
+                            <small>Total Dana</small>
+                            <b>Rp 999jt</b>
+                            <span class="success">+2%</span>
+                        </div>
+                        <div>
+                            <small>Anggota Aktif</small>
+                            <b>262</b>
+                            <span class="danger">-1%</span>
+                        </div>
+                    </div>
+                    <canvas id="chart"></canvas>
+                </div>
+
+                <div class="perf-right">
+                    <div class="card">
+                        <h3>Reminder & Alert</h3>
+
+                        <ul class="alert-list">
+                            <li><span class="dot red"></span> 3 anggota menunggak cicilan</li>
+                            <li><span class="dot yellow"></span> 5 simpanan jatuh tempo minggu ini</li>
+                            <li><span class="dot green"></span> Tidak ada laporan bermasalah</li>
+                        </ul>
+
+                        <button class="alert-btn">Lihat Detail</button>
+                    </div>
+
+                    <div class="card">
+                        <div class="health-card">
+                            <div class="health-top">
+                                <div>
+                                    <h3>Kesehatan Koperasi</h3>
+                                    <small>Status keseluruhan</small>
+                                </div>
+                                <span class="health-icon">💚</span>
+                            </div>
+
+                            <div class="health-bar">
+                                <div class="health-fill" style="width:82%"></div>
+                            </div>
+
+                            <div class="health-info">
+                                <b>82% Sehat</b>
+                                <p>Risiko kredit rendah & arus kas stabil</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        if (localStorage.getItem("isLogin") !== "true") {
+            window.location.href = "login.html";
+        }
+        function logout() {
+            localStorage.removeItem("isLogin");
+            localStorage.removeItem("username");
+            window.location.href = "login.html";
+        }
+        function toggleGuide() {
+            const guide = document.querySelector('.guide-container');
+            const icon = document.getElementById('toggle-icon');
+            guide.classList.toggle('collapsed');
+
+            if (guide.classList.contains('collapsed')) {
+                icon.textContent = '▶';
+            } else {
+                icon.textContent = '▼';
+            }
+        }
+
+
+        new Chart(document.getElementById('chart'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei'],
+                datasets: [{
+                    label: 'Transaksi',
+                    data: [20, 30, 25, 40, 35],
+                    borderWidth: 2,
+                    borderColor: '#2a7d2a',
+                    backgroundColor: 'rgba(42,125,42,0.1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    </script>
+</body>
+
+</html>

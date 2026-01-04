@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Simpan Pinjam</title>
+
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="top-left">
+            <span class="logo">Admin</span>
+            <span class="divider">|</span>
+            <span class="subtitle">Simpan Pinjam Center</span>
+        </div>
+
+        <div class="top-right">
+            <div class="notif-wrapper">
+                <i class="fa-solid fa-bell notif-icon"></i>
+                <div class="notif-dropdown">
+                    <div class="notif-title">Notifikasi</div>
+                    <ul class="notif-list">
+                        <li class="notif-item">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span><b>Budi Santoso</b> menambah pinjaman Rp 5.000.000</span>
+                        </li>
+                        <li class="notif-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>3 pinjaman jatuh tempo minggu ini</span>
+                        </li>
+                        <li class="notif-item">
+                            <i class="fa-solid fa-shield"></i>
+                            <span>Tidak ada laporan bermasalah</span>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile-area">
+                <img src="Images/adakami.png" class="profile-logo">
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+
+        <aside class="sidebar">
+            <ul>
+                <a href="index.html">
+                    <li><i class="fa-solid fa-house"></i> Home</li>
+                </a>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <a href="simpanan.html">
+                    <li><i class="fa-solid fa-building-columns"></i> Simpanan</li>
+                </a>
+
+                <a href="pinjaman.html">
+                    <li><i class="fa-solid fa-money-bill-wave"></i> Pinjaman</li>
+                </a>
+
+                <a href="laporan.html">
+                    <li><i class="fa-solid fa-chart-column"></i> Laporan</li>
+                </a>
+
+            </ul>
+
+            <hr>
+
+            <ul>
+                <a href="chat.html">
+                    <li><i class="fa-solid fa-comments"></i> Chat</li>
+                </a>
+                <li class="active"><i class="fa-solid fa-gear"></i> Profile</li>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <li><i class="fa-solid fa-bullhorn"></i> Marketing</li>
+                <li><i class="fa-solid fa-chart-line"></i> Analytics</li>
+                <li><i class="fa-solid fa-headset"></i> Help Center</li>
+            </ul>
+
+            <hr>
+            <ul>
+                <li onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </li>
+            </ul>
+        </aside>
+
+        <main class="content">
+
+            <div class="profile-card">
+
+                <!-- HEADER -->
+                <div class="profile-header">
+                    <img src="Images/adakami.png" class="profile-img">
+                    <h2>Admin Utama</h2>
+                    <p>Administrator</p>
+                </div>
+
+                <!-- FORM -->
+                <div class="profile-body">
+
+                    <h3>Data Akun</h3>
+                    <div class="grid">
+                        <div>
+                            <label>Nama Lengkap</label>
+                            <input type="text" id="nama" value="Admin Utama">
+                        </div>
+
+                        <div>
+                            <label>Username</label>
+                            <input type="text" id="username" value="admin">
+                        </div>
+
+                        <div>
+                            <label>Email</label>
+                            <input type="email" id="email" value="admin@simpanpinjam.id">
+                        </div>
+
+                        <div>
+                            <label>Role</label>
+                            <input type="text" value="Administrator" disabled>
+                        </div>
+                    </div>
+
+                    <h3>Informasi Kontak</h3>
+                    <div class="grid">
+                        <div>
+                            <label>No. Telepon</label>
+                            <input type="text" value="0812-3456-7890">
+                        </div>
+
+                        <div>
+                            <label>Alamat</label>
+                            <input type="text" value="Jl Jombang Raya">
+                        </div>
+
+                        <div>
+                            <label>Kota</label>
+                            <input type="text" value="Tangerang Selatan">
+                        </div>
+
+                        <div>
+                            <label>Kode Pos</label>
+                            <input type="text" value="10110">
+                        </div>
+                    </div>
+
+                    <h3>Keamanan</h3>
+                    <div class="grid">
+                        <div>
+                            <label>Password Lama</label>
+                            <input type="password">
+                        </div>
+
+                        <div>
+                            <label>Password Baru</label>
+                            <input type="password">
+                        </div>
+
+                        <div>
+                            <label>Konfirmasi Password</label>
+                            <input type="password">
+                        </div>
+
+                        <div>
+                            <label>Terakhir Login</label>
+                            <input type="text" value="15 Des 2025, 09:45" disabled>
+                        </div>
+                    </div>
+
+                    <h3>Preferensi</h3>
+                    <div class="grid">
+                        <div>
+                            <label>Bahasa</label>
+                            <select>
+                                <option selected>Indonesia</option>
+                                <option>English</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label>Tema</label>
+                            <select>
+                                <option selected>Light</option>
+                                <option>Dark</option>
+                            </select>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked>
+                                Terima notifikasi dashboard
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="save-btn" onclick="simpanProfil()">Simpan Perubahan</button>
+                    <p id="msg" class="msg"></p>
+
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+        if (localStorage.getItem("isLogin") !== "true") {
+            window.location.href = "login.html";
+        }
+        function logout() {
+            localStorage.removeItem("isLogin");
+            localStorage.removeItem("username");
+            window.location.href = "login.html";
+        }
+        function simpanProfil() {
+            const nama = document.getElementById("nama").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const msg = document.getElementById("msg");
+
+            msg.textContent = "";
+            msg.className = "msg";
+
+            if (!nama || !email) {
+                msg.textContent = "⚠️ Nama dan email wajib diisi";
+                msg.classList.add("error");
+                return;
+            }
+
+            msg.textContent = "✅ Profil berhasil disimpan";
+            msg.classList.add("success");
+        }
+    </script>
+
+</body>
+
+</html>

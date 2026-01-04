@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Simpan Pinjam</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h2>Admin Login</h2>
+        <p>Simpan Pinjam Center</p>
+
+        <form onsubmit="login(); return false;">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div id="msg"></div>
+    </div>
+
+   <script>
+    function login() {
+        const u = document.getElementById("username").value;
+        const p = document.getElementById("password").value;
+        const msg = document.getElementById("msg");
+
+        if (u === "admin" && p === "admin123") {
+            localStorage.setItem("isLogin", "true");
+            window.location.href = "index.html";
+        } else {
+            msg.textContent = "Username atau password salah";
+        }
+    }
+</script>
+
+</body>
+
+</html>
